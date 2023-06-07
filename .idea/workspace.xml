@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ca1f1fe-7a12-430b-bde7-8de55120ed62" name="Changes" comment="első">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/hu/masterfield/cucumber/steps/TescoSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/hu/masterfield/cucumber/steps/TescoSteps.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +32,6 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "last_directory_selection": "C:/Users/Student/Projects/testautomation/src/test/java",
     "last_opened_file_path": "C:/Users/Student/Projects/testautomation/src/test/resources"
   }
@@ -98,7 +96,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686125922615</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="első">
+      <created>1686126140038</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1686126140038</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

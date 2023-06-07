@@ -80,7 +80,7 @@ public class TescoSteps {
 
 
         openPage.acceptCookies();
-        fdgdgfdg
+        fdgdgfdgdfgfdgdfgd
     }
 
     @And("language is set to {string}")
