@@ -13,8 +13,8 @@ Feature: The user shall be able to change the language in BudapestGo
 
       Examples:
         | language | new_language |
-        | magyar   | english      |
-        | english  | magyar       |
+        | magyar   | angol        |
+        | angol    | magyar       |
 
 
 

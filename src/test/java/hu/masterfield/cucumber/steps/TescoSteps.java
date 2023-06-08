@@ -20,6 +20,8 @@ import java.io.InputStream;
 import java.time.Duration;
 import java.util.Properties;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class TescoSteps {
 
     protected static WebDriver driver;
@@ -38,6 +40,7 @@ public class TescoSteps {
         // set chrome options
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments(props.getProperty("chrome.arguments"));
+        chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
 
         // init driver
         driver = new ChromeDriver(chromeOptions);
@@ -50,9 +53,6 @@ public class TescoSteps {
         driver.quit();
     }
 
-
-
-
     @Given("open main page")
     public void openMainPage() {
         driver.get("https://bevasarlas.tesco.hu/groceries/hu-HU");
@@ -60,40 +60,37 @@ public class TescoSteps {
 
     @And("accept cookies")
     public void acceptCookies() {
-        //#sticky-bar-cookie-wrapper > span > div > div > div.base-components__BaseElement-sc-1mosoyj-0.styled__ButtonContainer-sc-1vnc1v2-4.oznwo.ksIudk.beans-cookies-notification__buttons-container > form:nth-child(1) > button > span > span
-        ////*[@id="sticky-bar-cookie-wrapper"]/span/div/div/div[2]/form[1]/button/span/span
         WebElement buttonAccept = wait.until(driver -> driver.findElement(By.xpath("//*[@id=\"sticky-bar-cookie-wrapper\"]/span/div/div/div[2]/form[1]/button/span/span")));
-
     }
 
     @Given("language is set to {string}")
     public void languageIsSetTo(String lang) {
+        WebElement langButton = wait.until(driver -> driver.findElement(By.xpath("//*[@id=\"utility-header-language-switch-link\"]/span/span")));
 
-        //ha maygar az oldal és megjelenik az english felirat:
-        //#utility-header-language-switch-link > span > span
-        ////*[@id="utility-header-language-switch-link"]/span/span
-        //ha angol az oldal és megjelenik az magyar felirat:
-        //#utility-header-language-switch-link > span > span
-        ////*[@id="utility-header-language-switch-link"]/span/span
-
-        WebElement languagetable = wait.until(driver -> driver.findElement(By.id("languagetable")));
-
-        if(lang.equals("magyar")) {
-            driver.findElement(By.cssSelector("#languagetable > span:nth-child(1)")).click();
+        if((langButton.getText().equals("Magyar") &&
+                lang.equals("magyar")) ||
+                (langButton.getText().equals("English") &&
+                        lang.equals("angol")) ) {
+            langButton.click();
         }
-
-        if(lang.equals("english")) {
-            driver.findElement(By.cssSelector("#languagetable > span:nth-child(2)")).click();
-        }
-
-
     }
 
     @When("change the language to {string}")
-    public void changeTheLanguageTo(String arg0) {
+    public void changeTheLanguageTo(String lang) {
+        languageIsSetTo(lang);
     }
 
     @Then("it shows elements in {string}")
-    public void itShowsElementsIn(String arg0) {
+    public void itShowsElementsIn(String language) {
+        WebElement langButton =
+                wait.until(driver -> driver.findElement(By.xpath("//*[@id=\"utility-header-language-switch-link\"]/span/span")));
+
+        if (language.equals("angol")) {
+            assertEquals("Magyar", langButton.getText());
+        }
+        if (langButton.getText().equals("magyar")) {
+            assertEquals("English", langButton.getText());
+        }
+
     }
 }
