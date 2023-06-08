@@ -2,7 +2,6 @@ package hu.masterfield.cucumber.steps;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import io.cucumber.java.BeforeStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -20,17 +19,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
 import java.util.Properties;
-import java.util.logging.Logger;
-
 
 public class TescoSteps {
+
     protected static WebDriver driver;
 
     protected static WebDriverWait wait;
 
-    public static Logger log = LogManager.getLogger();
-
-    @Before // cucumber annotáció
+    @Before   // cucumber annotáció
     public static void setup() throws IOException {
         WebDriverManager.chromedriver().setup();
 
@@ -42,9 +38,6 @@ public class TescoSteps {
         // set chrome options
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments(props.getProperty("chrome.arguments"));
-        chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
-
-        //chromeOptions.setHeadless(true);
 
         // init driver
         driver = new ChromeDriver(chromeOptions);
@@ -52,78 +45,54 @@ public class TescoSteps {
 
         driver.manage().window().setSize(new Dimension(900, 900)); // ...selenium.Dimension
     }
-
     @After
     public static void cleanup() {
         driver.quit();
     }
 
-    @BeforeStep
-    public void screenshot() {
-        log.info("Take screenshot");
-        Utils.takeSnapShot(driver);
-    }
 
-    OpenPage openPage = new OpenPage(driver);
+
 
     @Given("open main page")
     public void openMainPage() {
-        //driver.get(https://bevasarlas.tesco.hu/groceries/hu-HU);
-        openPage.open();
+        driver.get("https://bevasarlas.tesco.hu/groceries/hu-HU");
     }
 
     @And("accept cookies")
     public void acceptCookies() {
-        // #sticky-bar-cookie-wrapper > span > div > div > div.base-components__BaseElement-sc-1mosoyj-0.styled__ButtonContainer-sc-1vnc1v2-4.oznwo.ksIudk.beans-cookies-notification__buttons-container > form:nth-child(1) > button > span > span
-        // //*[@id="sticky-bar-cookie-wrapper"]/span/div/div/div[2]/form[1]/button/span/span
-        WebElement acceptButton = wait.until(driver -> driver.findElement(By.xpath("//*[@id=\"sticky-bar-cookie-wrapper\"]/span/div/div/div[2]/form[1]/button/span/span")));
+        //#sticky-bar-cookie-wrapper > span > div > div > div.base-components__BaseElement-sc-1mosoyj-0.styled__ButtonContainer-sc-1vnc1v2-4.oznwo.ksIudk.beans-cookies-notification__buttons-container > form:nth-child(1) > button > span > span
+        ////*[@id="sticky-bar-cookie-wrapper"]/span/div/div/div[2]/form[1]/button/span/span
+        WebElement buttonAccept = wait.until(driver -> driver.findElement(By.xpath("//*[@id=\"sticky-bar-cookie-wrapper\"]/span/div/div/div[2]/form[1]/button/span/span")));
 
-
-        openPage.acceptCookies();
-        fdgdgfdgdfgfdgdfgd
     }
 
-    @And("language is set to {string}")
+    @Given("language is set to {string}")
     public void languageIsSetTo(String lang) {
 
+        //ha maygar az oldal és megjelenik az english felirat:
+        //#utility-header-language-switch-link > span > span
+        ////*[@id="utility-header-language-switch-link"]/span/span
+        //ha angol az oldal és megjelenik az magyar felirat:
+        //#utility-header-language-switch-link > span > span
+        ////*[@id="utility-header-language-switch-link"]/span/span
         WebElement languagetable = wait.until(driver -> driver.findElement(By.id("languagetable")));
 
-        if (lang.equals("magyar")) {
+        if(lang.equals("magyar")) {
             driver.findElement(By.cssSelector("#languagetable > span:nth-child(1)")).click();
         }
 
-        if (lang.equals("english")) {
+        if(lang.equals("english")) {
             driver.findElement(By.cssSelector("#languagetable > span:nth-child(2)")).click();
         }
+
 
     }
 
     @When("change the language to {string}")
-    public void changeTheLanguageTo(String newLang) {
-        languageIsSetTo(newLang);
+    public void changeTheLanguageTo(String arg0) {
     }
 
     @Then("it shows elements in {string}")
-    public void itShowsElementsIn(String lang) {
-        // #panel-context-view > div > h2
-        WebElement titleH2 = wait.until(driver -> driver.findElement(By.cssSelector("#panel-context-view > div > h2")));
-
-        if (lang.equals("magyar")) {
-            assertEquals("Utazástervezés", titleH2.getText()); // org.junit
-        }
-        if (lang.equals("english")) {
-            assertEquals("Trip Planner", titleH2.getText()); // org.junit
-        }
-
-    }
-
-    @When("change the language to")
-    public void changeTheLanguageTo(DataTable dataTable /* io.cucumber.DataTable */) {
-        for (Map<String, String> cells : dataTable.entries()) {
-            changeTheLanguageTo(cells.get("lang")); // changeTheLanguageTo(String lang)
-            System.out.println(cells.get("code"));
-        }
+    public void itShowsElementsIn(String arg0) {
     }
 }
-
-

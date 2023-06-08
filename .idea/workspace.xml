@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ca1f1fe-7a12-430b-bde7-8de55120ed62" name="Changes" comment="első">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/hu/masterfield/cucumber/steps/TescoSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/hu/masterfield/cucumber/steps/TescoSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/features/changeLang.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/changeLang.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/proba.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/proba2.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +37,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "last_directory_selection": "C:/Users/Student/Projects/testautomation/src/test/java",
-    "last_opened_file_path": "C:/Users/Student/Projects/testautomation/src/test/resources"
+    "last_opened_file_path": "C:/Users/Student/Projects/testautomation/src/test/resources",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -103,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686126140038</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="első">
+      <created>1686126175038</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1686126175038</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
