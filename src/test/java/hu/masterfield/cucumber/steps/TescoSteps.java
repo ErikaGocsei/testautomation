@@ -75,6 +75,7 @@ public class TescoSteps {
         //ha angol az oldal és megjelenik az magyar felirat:
         //#utility-header-language-switch-link > span > span
         ////*[@id="utility-header-language-switch-link"]/span/span
+
         WebElement languagetable = wait.until(driver -> driver.findElement(By.id("languagetable")));
 
         if(lang.equals("magyar")) {
